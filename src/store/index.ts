@@ -47,17 +47,22 @@ export default createStore<IState>({
         ? (state.locations = JSON.parse(locations))
         : (state.locations = []);
     },
-    setFetchCountry(state: IState, value:string) {
+    setFetchCountry(state: IState, value: string) {
       state.fetchCountry = value;
     },
   },
   actions: {
     async fetchGeoLocaiton() {
       try {
-        let response: { data: IGeoResponse } = await axios.get(
+        const response: { data: IGeoResponse } = await axios.get(
           `${process.env.VUE_APP_GET_USER_IP}`
         );
-        return response.data;
+        const ip = response.data.ip;
+        const responseCity: { data: IGeoResponse } = await axios.get(
+          `https://ipapi.co/${ip}/json/`
+        );
+        console.log(response.data);
+        return responseCity.data;
       } catch (error) {
         console.log(error);
       }
@@ -74,7 +79,7 @@ export default createStore<IState>({
             {
               id: new Date(),
               city: user_location.city,
-              country: user_location.countryCode,
+              country: user_location.country,
             },
           ];
           dispatch("setLocations", locations);
@@ -99,7 +104,7 @@ export default createStore<IState>({
         .get(
           `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.VUE_APP_WEATHER_API_KEY}`
         )
-        .then((response:{data:IWeatherResponse}) => {
+        .then((response: { data: IWeatherResponse }) => {
           dispatch("convertDirectionWind", response.data);
         })
         .catch((error) => {

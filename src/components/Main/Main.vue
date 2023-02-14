@@ -68,9 +68,7 @@
       </div>
       <img
         class="weather_main__card__background_image"
-        :src="
-          require(`../../assets/img/${item.weather[0].main.toLowerCase()}.jpg`)
-        "
+        :src="require(`@/assets/img/${item.weather[0].main.toLowerCase()}.jpg`)"
         :alt="item.weather[0].main"
       />
     </div>
@@ -82,11 +80,19 @@ import { mapGetters } from "vuex";
 import { defineComponent } from "vue";
 
 export default defineComponent({
+  data: () => ({
+    srcUrl: "",
+  }),
   computed: {
     ...mapGetters({
       weather: "getWeather",
     }),
   },
+  // methods: {
+  //   getImgUrl(pic:string) {
+  //     const images = require.context("../../assets/img/",false, /\.jpg$/)
+  //     return images("./"+pic+".jpg")
+  //   },}
 });
 </script>
 
