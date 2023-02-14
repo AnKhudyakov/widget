@@ -1,0 +1,30 @@
+@import "../../styles/App.scss";
+
+.button {
+  position: fixed;
+  z-index: 1;
+  top: 22px;
+  right: calc(50% + 30px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  width: 20px;
+  @media screen and (max-width: 660px) {
+    right: 40px;
+  }
+}
+
+.button__icon {
+  margin-top: 20px;
+  min-width: 20px;
+  max-width: 20px;
+  min-height: 20px;
+  max-height: 20px;
+  fill: #fff;
+  cursor: pointer;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  &:hover {
+    -webkit-transform: rotate(40deg);
+    transform: rotate(40deg);
+  }
+}

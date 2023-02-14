@@ -1,18 +1,48 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <Settings
+      v-if="isSettingsVisible"
+      @closeSettings="toggleIsSettingsVisible()"
+    ></Settings>
+    <SettingsButton @openSettings="toggleIsSettingsVisible()"></SettingsButton>
+    <Loader v-if="loading"></Loader>
+    <Main></Main>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+import { mapGetters } from "vuex";
+import Main from "../components/Main/Main.vue";
+import Settings from "../components/Settings/Settings.vue";
+import SettingsButton from "../components/SettingsButton/SettingsButton.vue";
+import Loader from "../components/Loader/Loader.vue";
 
 export default defineComponent({
-  name: "HomeView",
   components: {
-    HelloWorld,
+    Settings,
+    SettingsButton,
+    Main,
+    Loader,
+  },
+  data: () => ({
+    isSettingsVisible: false,
+  }),
+
+  computed: {
+    ...mapGetters({
+      loading: "getLoading",
+    }),
+  },
+
+  mounted() {
+    this.$store.commit("updateLocations");
+    this.$store.dispatch("checkLocations");
+  },
+  methods: {
+    toggleIsSettingsVisible() {
+      this.isSettingsVisible = !this.isSettingsVisible;
+    },
   },
 });
 </script>
