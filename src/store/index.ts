@@ -61,7 +61,6 @@ export default createStore<IState>({
         const responseCity: { data: IGeoResponse } = await axios.get(
           `https://ipapi.co/${ip}/json/`
         );
-        console.log(response.data);
         return responseCity.data;
       } catch (error) {
         console.log(error);
