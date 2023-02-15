@@ -55,7 +55,7 @@ export default createStore<IState>({
     async fetchGeoLocaiton() {
       try {
         const response: { data: IGeoResponse } = await axios.get(
-          `${process.env.VUE_APP_GET_USER_IP}`
+          `https://jsonip.com`
         );
         const ip = response.data.ip;
         const responseCity: { data: IGeoResponse } = await axios.get(
@@ -102,7 +102,7 @@ export default createStore<IState>({
       const { city } = location;
       await axios
         .get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.VUE_APP_WEATHER_API_KEY}`
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=0f09d498c18c8cfb1a5fefe1f1fcea67`
         )
         .then((response: { data: IWeatherResponse }) => {
           dispatch("convertDirectionWind", response.data);
@@ -114,7 +114,7 @@ export default createStore<IState>({
     async fetchCountry({ commit }, city) {
       try {
         let response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.VUE_APP_WEATHER_API_KEY}`
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=0f09d498c18c8cfb1a5fefe1f1fcea67`
         );
         return commit("setFetchCountry", response.data.sys.country);
       } catch (error) {

@@ -66,11 +66,32 @@
           <p>{{ item.visibility / 1000 }} km</p>
         </div>
       </div>
-      <img
+      <img v-if="item.weather[0].main.toLowerCase()==='clouds'"
         class="weather_main__card__background_image"
-        :src="require(`@/assets/img/${item.weather[0].main.toLowerCase()}.jpg`)"
+        src="https://i.ibb.co/tK1Gx3T/clouds.png"
         :alt="item.weather[0].main"
       />
+      <img v-else-if="item.weather[0].main.toLowerCase()==='clear'"
+        class="weather_main__card__background_image"
+        src="https://i.ibb.co/BP6JFWR/clear.jpg"
+        :alt="item.weather[0].main"
+      />
+      <img v-else-if="item.weather[0].main.toLowerCase()==='rain'"
+        class="weather_main__card__background_image"
+        src="https://i.ibb.co/HBKxHRw/rain.png"
+        :alt="item.weather[0].main"
+      />
+      <img v-else-if="item.weather[0].main.toLowerCase()==='snow'"
+        class="weather_main__card__background_image"
+        src="https://i.ibb.co/g79tG4J/snow.jpg"
+        :alt="item.weather[0].main"
+      />
+      <img v-else="item.weather[0].main.toLowerCase()==='clear'"
+        class="weather_main__card__background_image"
+        src="https://i.ibb.co/BP6JFWR/clear.jpg"
+        :alt="item.weather[0].main"
+      />
+
     </div>
   </div>
 </template>
