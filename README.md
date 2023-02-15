@@ -1,4 +1,15 @@
-# weather-widget
+# Welcome to weather-widget project
+
+### `Use the weather-widget `
+added this tag in your html:
+
+```
+<weather-widget/>
+    <script src="https://ankhudyakov.github.io/widget/main.js"></script>
+
+```
+
+### `Run project `
 
 ## Project setup
 ```
@@ -13,16 +24,6 @@ npm run serve
 ### Compiles and minifies for production
 ```
 npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
-npm run lint
 ```
 
 ### Customize configuration
